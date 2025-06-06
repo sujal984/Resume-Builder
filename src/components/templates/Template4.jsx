@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   PhoneOutlined,
   MailOutlined,
@@ -143,5 +144,12 @@ const Template4 = ({ data, title }) => {
     </>
   );
 };
+=======
+import React from "react";
+
+function Template4() {
+  return <div>Template4</div>;
+}
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
 
 export default Template4;

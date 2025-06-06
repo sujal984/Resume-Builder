@@ -126,4 +126,5 @@ function Template3({ data, title }) {
     </>
   );
 }
+
 export default Template3;

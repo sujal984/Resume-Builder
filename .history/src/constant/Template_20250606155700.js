@@ -4,7 +4,6 @@ import Template2 from "../components/templates/Template2";
 import Template3 from "../components/templates/Template3";
 import Template4 from "../components/templates/Template4";
 import Template5 from "../components/templates/Template5";
-
 export const Template = {
   T1: {
     id: 1,

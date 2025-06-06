@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b8fbc5cf7f88059c0987c875803e2434342264bc
 import {
   PhoneOutlined,
   MailOutlined,
@@ -143,5 +147,15 @@ const Template4 = ({ data, title }) => {
     </>
   );
 };
+<<<<<<< HEAD
+=======
+=======
+import React from "react";
+
+function Template4() {
+  return <div>Template4</div>;
+}
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
+>>>>>>> b8fbc5cf7f88059c0987c875803e2434342264bc
 
 export default Template4;

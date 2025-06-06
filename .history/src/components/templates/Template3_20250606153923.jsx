@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Helmet from "react-helmet";
 import { Button } from "antd";
 import ArrowLeftOutlined from "@ant-design/icons/lib/icons/ArrowLeftOutlined";
@@ -125,5 +126,12 @@ function Template3({ data, title }) {
       </div>
     </>
   );
+=======
+import React from "react";
+
+function Template3() {
+  return <div>Template3</div>;
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
 }
+
 export default Template3;

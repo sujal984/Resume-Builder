@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Divider } from "antd";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -55,6 +56,12 @@ function Template5({ title, data }) {
       </div>
     </>
   );
+=======
+import React from "react";
+
+function Template5() {
+  return <div>Template5</div>;
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
 }
 
 export default Template5;

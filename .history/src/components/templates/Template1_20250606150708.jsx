@@ -1,3 +1,131 @@
+// import Helmet from "react-helmet";
+
+// function Template1({ title, data }) {
+//   const {
+//     name,
+//     email,
+//     phone,
+//     location,
+//     objective,
+//     education = [],
+//     trainings = [],
+//     projects = [],
+//     skills = [],
+//     activities = [],
+//     dob,
+//     portfolio,
+//   } = data || {};
+//   return (
+//     <>
+//       <Helmet>
+//         <title>{title}</title>
+//       </Helmet>
+
+//       <div className="max-w-4xl mx-auto p-6 font-sans text-gray-800 md:mx-0 border-1">
+//         <header className="text-center mb-6">
+//           <h1 className="text-3xl font-bold">{name}</h1>
+//           <p className="text-sm">{`${email}  ${phone} ${location}`}</p>
+//         </header>
+
+//         <section className="mb-6 ">
+//           <h2 className="text-xl font-semibold border-b mb-2">
+//             Career Objective
+//           </h2>
+//           <p>{objective}</p>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">Education</h2>
+//           <ul>
+//             <li>
+//               <strong>Bachelor of Computer Applications (BCA)</strong> - Silver
+//               Oak College Of Computer Application (2023 - 2025)
+//             </li>
+//             <li>
+//               <strong>Senior Secondary (XII), Commerce</strong> - Kishore
+//               Gurunomal Kanjani School, 2023 (71.00%)
+//             </li>
+//             <li>
+//               <strong>Secondary (X)</strong> - Bhagwati School, 2021 (60.00%)
+//             </li>
+//           </ul>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">
+//             Trainings / Certifications
+//           </h2>
+//           <ul>
+//             <li>
+//               CyberSecurity Workshop – Silver Oak University, Ahmedabad (Jul
+//               2024)
+//             </li>
+//             <li>
+//               Rock Paper Scissor Game – Silver Oak University, Ahmedabad (Feb
+//               2024 - Apr 2024)
+//             </li>
+//           </ul>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">Projects</h2>
+//           <div>
+//             <h3 className="font-semibold">Innovative Assignment</h3>
+//             <p>
+//               Created a Rock-Scissor-Paper Game using HTML, CSS for UI, and
+//               JavaScript for backend logic.
+//             </p>
+//           </div>
+//           <div>
+//             <h3 className="font-semibold mt-2">Rock Paper Scissor Game</h3>
+//             <p>
+//               Developed an interactive and responsive Rock Paper Scissor Game
+//               using HTML, CSS, and JavaScript. Includes real-time feedback,
+//               event handling, and game logic.
+//             </p>
+//           </div>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">Skills</h2>
+//           <p>
+//             HTML, CSS, JavaScript, Python, Java, SQL, C, C++, C#, PHP, .NET,
+//             Django, Bootstrap, MySQL, MongoDB, MS-Excel, Effective Communication
+//           </p>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">
+//             Extra Curricular Activities
+//           </h2>
+//           <ul>
+//             <li>Participated in Cybersecurity Workshop</li>
+//             <li>Participated in Code Dilemma (Silver Oak University)</li>
+//           </ul>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-xl font-semibold border-b mb-2">
+//             Additional Details
+//           </h2>
+//           <p>DOB: 20-06-2005</p>
+//           <p>
+//             Portfolio:{" "}
+//             <a
+//               href="https://codepen.io/sujal984/pen/KwPJLyq"
+//               className="text-blue-600 underline"
+//             >
+//               Codepen Project
+//             </a>
+//           </p>
+//         </section>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Template1;
+
 import React from "react";
 import { Helmet } from "react-helmet";
 import html2canvas from "html2canvas";
@@ -125,10 +253,7 @@ function Template1({ title, data, newStep, stepNo, next, prev, reset }) {
             </h2>
             <ul className="list-disc ml-5">
               {trainings.map((training, index) => (
-                <li key={index}>
-                  {training.title} {training.date}
-                  {training.organization && ` - ${training.organization}`}
-                </li>
+                <li key={index}>{training.title}</li>
               ))}
             </ul>
           </section>

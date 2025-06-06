@@ -1,5 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "resume-builder-new",
+=======
+<<<<<<< HEAD
+  "name": "resume-builder-new",
+=======
+  "name": "resume-builder-frontend",
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
+>>>>>>> b8fbc5cf7f88059c0987c875803e2434342264bc
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +18,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b8fbc5cf7f88059c0987c875803e2434342264bc
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@ironsoftware/ironpdf": "^2025.6.8",
     "@ironsoftware/ironpdf-engine-windows-x64": "^2025.6.8",
@@ -28,6 +40,16 @@
     "react-to-print": "^3.1.0",
     "renderer": "^0.1.5",
     "tailwindcss": "^4.1.8"
+<<<<<<< HEAD
+=======
+=======
+    "antd": "^5.25.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-error-boundary": "^6.0.0",
+    "react-helmet": "^6.1.0"
+>>>>>>> 357cfcf9c2c2a47db71b2c88d57144601d98318c
+>>>>>>> b8fbc5cf7f88059c0987c875803e2434342264bc
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

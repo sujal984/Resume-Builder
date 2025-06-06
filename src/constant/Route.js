@@ -9,6 +9,8 @@ import MasterTemporary from "../components/templates/MasterTemporary";
 import Temporary from "../components/templates/Temporary";
 export const Routee = {
   Home: {
+    id: 1,
+
     name: "Home",
     component: Home,
     path: "/",

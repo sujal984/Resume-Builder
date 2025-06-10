@@ -144,7 +144,7 @@ function Temporary({ title, data }) {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <h1 className="text-slate-700">diljhdilhjdfouhti</h1>
+
       <div
         id="resume"
         className="max-w-4xl p-2 font-sans text-gray-800 md:mx-0 border-1 preview"

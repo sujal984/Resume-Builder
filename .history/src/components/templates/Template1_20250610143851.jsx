@@ -209,10 +209,7 @@ function Template1({ title, data, newStep, stepNo, next, prev, reset }) {
             marginTop: stepNo === 5 ? "60rem" : "31rem",
           }}
         >
-          <div
-            className="pb-5"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
+          <div className="pb-5">
             {stepNo > 0 && stepNo < 5 && (
               <Button
                 onClick={prev}

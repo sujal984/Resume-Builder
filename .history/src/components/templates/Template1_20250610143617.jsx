@@ -35,6 +35,7 @@ function Template1({ title, data, newStep, stepNo, next, prev, reset }) {
   const handleDownload = async () => {
     if (!pdfRef.current) return;
 
+    // Wait for layout to stabilize
     await new Promise((resolve) => requestAnimationFrame(resolve));
 
     const element = pdfRef.current;
@@ -47,7 +48,7 @@ function Template1({ title, data, newStep, stepNo, next, prev, reset }) {
 
     try {
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: 2, // higher scale = better quality
         useCORS: true,
       });
 
@@ -209,10 +210,7 @@ function Template1({ title, data, newStep, stepNo, next, prev, reset }) {
             marginTop: stepNo === 5 ? "60rem" : "31rem",
           }}
         >
-          <div
-            className="pb-5"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
+          <div className="pb-5">
             {stepNo > 0 && stepNo < 5 && (
               <Button
                 onClick={prev}

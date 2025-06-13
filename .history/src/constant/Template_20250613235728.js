@@ -1,3 +1,10 @@
+import { Component } from "react";
+import Template1 from "../components/templates/Template1";
+import Template2 from "../components/templates/Template2";
+import Template3 from "../components/templates/Template3";
+import Template4 from "../components/templates/Template4";
+import Template5 from "../components/templates/Template5";
+
 export const Template = {
   T1: {
     id: 1,
@@ -24,7 +31,7 @@ export const Template = {
     name: "Resume-3",
 
     title: "Template 3",
-    path: "#",
+    path: "/mastertemplate-3",
     description: "Professional Resume. coming soon...",
     src: "/SujalJain_InternshalaResume_page-0001.jpg",
     alt: "Template-3",
@@ -33,7 +40,7 @@ export const Template = {
     id: 4,
     name: "Resume-4",
 
-    path: "#",
+    path: "/mastertemplate-4",
     title: "Template 4",
     description: "Template without image. coming soon...",
     src: "/SujalJain_InternshalaResume_page-0001.jpg",
@@ -43,12 +50,10 @@ export const Template = {
     id: 5,
     name: "Resume-5",
 
-    path: "#",
+    path: "/mastertemplate-5",
     title: "Template 5",
     description: "Template without image. coming soon...",
     src: "/SujalJain_InternshalaResume_page-0001.jpg",
     alt: "Template-5",
   },
 };
-
-// All path need to be set

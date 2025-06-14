@@ -397,328 +397,200 @@ const Template2 = ({ title, data, newStep, stepNo, next, prev, reset }) => {
           minHeight: "810px",
           margin: "40px auto",
           background: "#fff",
-          borderRadius: "15px",
+          borderRadius: "15px 15px 15px 15px",
           boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
           overflow: "hidden",
-          position: "relative",
         }}
       >
-        {/* Left Sidebar */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: "200px",
-            height: "100%",
-            backgroundColor: "#d1d5db",
-            padding: "20px",
-            boxSizing: "border-box",
-          }}
-        >
-          {portfolio && (
-            <div style={{ textAlign: "center", marginBottom: "20px" }}>
-              <img
-                src="/Resume-logo.jpg"
-                alt={`Portrait of ${fname} ${lname}`}
-                style={{
-                  width: "120px",
-                  height: "120px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  border: "4px solid white",
-                }}
-              />
-            </div>
-          )}
-
-          {objective && (
-            <div style={{ marginBottom: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  borderBottom: "2px solid #1f2a40",
-                  paddingBottom: "5px",
-                  marginBottom: "10px",
-                }}
-              >
-                PROFILE
-              </h3>
-              <p style={{ fontSize: "12px", lineHeight: "1.5" }}>{objective}</p>
-            </div>
-          )}
-
-          {education.length > 0 && (
-            <div style={{ marginBottom: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  borderBottom: "2px solid #1f2a40",
-                  paddingBottom: "5px",
-                  marginBottom: "10px",
-                }}
-              >
-                EDUCATION
-              </h3>
-              {education.map((edu, index) => (
-                <div key={index} style={{ marginBottom: "15px" }}>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "bold",
-                      marginBottom: "3px",
-                    }}
-                  >
-                    {edu.degree}
-                  </p>
-                  <p style={{ fontSize: "12px", marginBottom: "3px" }}>
-                    {edu.institute}
-                  </p>
-                  <p style={{ fontSize: "12px", color: "#666" }}>{edu.year}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {skills.length > 0 && (
-            <div style={{ marginBottom: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  borderBottom: "2px solid #1f2a40",
-                  paddingBottom: "5px",
-                  marginBottom: "10px",
-                }}
-              >
-                SKILLS
-              </h3>
-              {skills.map((skill, index) => (
-                <div key={index} style={{ marginBottom: "10px" }}>
-                  <p
-                    style={{
-                      fontSize: "12px",
-                      marginBottom: "5px",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {skill}
-                  </p>
-                  <Progress
-                    percent={Math.floor(Math.random() * 50) + 50}
-                    showInfo={false}
-                    strokeColor="#1f2a40"
-                    trailColor="#e5e7eb"
-                    strokeWidth={8}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Main Content */}
-        <div
-          style={{
-            marginLeft: "200px",
-            padding: "30px",
-            minHeight: "100%",
-          }}
-        >
-          {/* Header */}
-          <div
+        <Row style={{ height: "auto" }}>
+          {/* Left Sidebar */}
+          <Col
+            xs={24}
+            md={5}
             style={{
-              backgroundColor: "#1f2a40",
-              color: "white",
-              padding: "30px",
-              margin: "-30px -30px 30px -30px",
+              display: "flex",
+              position: "absolute",
+              borderRadius: "15px 15px 0px 0px",
+              backgroundColor: "#d1d5db",
+              zIndex: 1,
+              marginTop: "4rem",
+              marginLeft: "4rem",
+              height: "auto",
+              padding: "7.5px",
+              width: "13rem",
             }}
           >
-            <h1
+            <div
+              className="profile-sidebar"
               style={{
-                fontSize: "32px",
-                fontWeight: "bold",
-                marginBottom: "5px",
-                textTransform: "uppercase",
+                flex: 1,
+                padding: "6px",
+                borderTopRightRadius: "15px",
+                borderTopLeftRadius: "12px",
               }}
             >
-              {fname} {lname}
-            </h1>
-            <p
-              style={{
-                fontSize: "16px",
-                opacity: 0.8,
-              }}
-            >
-              {trainings.length > 0 ? trainings[0].title : "Professional"}
-            </p>
-          </div>
-
-          {/* Experience Section */}
-          {(projects.length > 0 || trainings.length > 0) && (
-            <div style={{ marginBottom: "30px" }}>
-              <h2
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  borderBottom: "2px solid #1f2a40",
-                  paddingBottom: "5px",
-                  marginBottom: "15px",
-                  textTransform: "uppercase",
-                }}
-              >
-                EXPERIENCE
-              </h2>
-
-              {projects.map((project, index) => (
-                <div key={index} style={{ marginBottom: "20px" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    <h3
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {project.title}
-                    </h3>
-                    {project.year && (
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        {project.year}
-                      </span>
-                    )}
-                  </div>
-                  <p style={{ fontSize: "12px", lineHeight: "1.5" }}>
-                    {project.description}
-                  </p>
+              {portfolio && (
+                <div className="profile-image-wrapper">
+                  <img src={portfolio} alt={`Portrait of ${fname} ${lname}`} />
                 </div>
-              ))}
+              )}
 
-              {trainings.map((training, index) => (
-                <div key={index} style={{ marginBottom: "20px" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    <h3
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {training.organization || training.title}
-                    </h3>
-                    {training.date && (
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        {training.date}
-                      </span>
-                    )}
-                  </div>
-                  <p style={{ fontSize: "12px", lineHeight: "1.5" }}>
-                    {training.description || training.title}
-                  </p>
+              <div className="profile-section text-wrap">
+                <h3 className="section-title">Profile</h3>
+                <p className="profile-text text-break-all">
+                  {objective || "No objective provided"}
+                </p>
+              </div>
+
+              {education.length > 0 && (
+                <div className="profile-section">
+                  <h3 className="section-title">Education</h3>
+                  {education.map((edu, index) => (
+                    <p key={index} className="education-text">
+                      {edu.institute}
+                      <br />
+                      {edu.degree}
+                      <br />
+                      {edu.year}
+                    </p>
+                  ))}
                 </div>
-              ))}
+              )}
+
+              {skills.length > 0 && (
+                <div className="profile-section">
+                  <h3 className="section-title">Skills</h3>
+                  {skills.map((skill, index) => (
+                    <div key={index} className="skills-item">
+                      <span>{skill}</span>
+                      <Progress
+                        percent={Math.floor(Math.random() * 50) + 50} // Random progress between 50-100%
+                        showInfo={false}
+                        strokeColor="#1f2a40"
+                        trailColor="#e5e7eb"
+                        strokeWidth={8}
+                        style={{ width: "55%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </Col>
 
-          {/* Activities Section */}
-          {activities.length > 0 && (
-            <div style={{ marginBottom: "30px" }}>
-              <h2
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  borderBottom: "2px solid #1f2a40",
-                  paddingBottom: "5px",
-                  marginBottom: "15px",
-                  textTransform: "uppercase",
-                }}
-              >
-                ACTIVITIES
-              </h2>
-              <ul style={{ paddingLeft: "20px" }}>
-                {activities.map((activity, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      fontSize: "12px",
-                      marginBottom: "8px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {activity}
-                  </li>
+          {/* Right Content Area */}
+          <Col span={24}>
+            <div
+              className="header-dark header"
+              style={{ height: "15rem", borderRadius: "15px  15px  0px 0px" }}
+            >
+              <div className="name" style={{ marginLeft: "17rem" }}>
+                {fname} <br /> {lname}
+              </div>
+              <div className="title" style={{ marginLeft: "17rem" }}>
+                {trainings.length > 0 ? trainings[0].title : "Professional"}
+              </div>
+            </div>
+          </Col>
+
+          <Col
+            span={24}
+            xs={24}
+            md={14}
+            style={{
+              backgroundColor: "white",
+              minHeight: "100%",
+              marginLeft: "17rem",
+              width: "100%",
+            }}
+          >
+            {(projects.length > 0 || trainings.length > 0) && (
+              <div className="experience-section">
+                <h3 className="section-title">Experience</h3>
+                {projects.map((project, index) => (
+                  <div key={index} className="experience-item">
+                    <div className="experience-duration">
+                      <span className="experience-dot" />
+                      {project.year || "Present"}
+                      <span className="experience-company">
+                        | {project.title}
+                      </span>
+                    </div>
+                    <p className="experience-text">{project.description}</p>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          )}
+                {trainings.map((training, index) => (
+                  <div key={index} className="experience-item">
+                    <div className="experience-duration">
+                      <span className="experience-dot" />
+                      {training.date || "Present"}
+                      <span className="experience-company">
+                        | {training.organization || training.title}
+                      </span>
+                    </div>
+                    <p className="experience-text">
+                      {training.description || training.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
 
-          {/* Contact Section */}
-          <div>
-            <h2
-              style={{
-                fontSize: "18px",
-                fontWeight: "bold",
-                borderBottom: "2px solid #1f2a40",
-                paddingBottom: "5px",
-                marginBottom: "15px",
-                textTransform: "uppercase",
-              }}
-            >
-              CONTACT
-            </h2>
-            <div style={{ display: "grid", gap: "10px" }}>
-              {phone && (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <PhoneOutlined style={{ marginRight: "10px" }} />
-                  <span style={{ fontSize: "12px" }}>{phone}</span>
-                </div>
-              )}
-              {email && (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <MailOutlined style={{ marginRight: "10px" }} />
-                  <span style={{ fontSize: "12px" }}>{email}</span>
-                </div>
-              )}
-              {location && (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <EnvironmentOutlined style={{ marginRight: "10px" }} />
-                  <span style={{ fontSize: "12px" }}>{location}</span>
-                </div>
-              )}
-              {linkedin && (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <LinkedinOutlined style={{ marginRight: "10px" }} />
-                  <span style={{ fontSize: "12px" }}>{linkedin}</span>
-                </div>
-              )}
+            {activities.length > 0 && (
+              <div className="experience-section">
+                <h3 className="section-title">Activities</h3>
+                {activities.map((activity, index) => (
+                  <div key={index} className="experience-item">
+                    <p className="experience-text">{activity}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Col>
+
+          <Col span={24}>
+            <div style={{ marginTop: "auto" }}>
+              <h3 className="section-title" style={{ paddingLeft: "19rem" }}>
+                Contact
+              </h3>
+              <div
+                className="contact-section"
+                style={{
+                  marginLeft: "17rem",
+                  height: "9rem",
+                  padding: "15px",
+                }}
+              >
+                {phone && (
+                  <div className="contact-item">
+                    <PhoneOutlined />
+                    <span>{phone}</span>
+                  </div>
+                )}
+                {email && (
+                  <div className="contact-item">
+                    <MailOutlined />
+                    <span>{email}</span>
+                  </div>
+                )}
+                {location && (
+                  <div className="contact-item">
+                    <EnvironmentOutlined />
+                    <span>{location}</span>
+                  </div>
+                )}
+                {linkedin && (
+                  <div className="contact-item">
+                    <LinkedinOutlined />
+                    <span>{linkedin}</span>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
 
-      {/* Footer Navigation */}
       <div
         className="footer"
         style={{

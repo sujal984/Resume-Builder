@@ -419,7 +419,7 @@ const Template2 = ({ title, data, newStep, stepNo, next, prev, reset }) => {
           {portfolio && (
             <div style={{ textAlign: "center", marginBottom: "20px" }}>
               <img
-                src="/Resume-logo.jpg"
+                src="/public/Resume-logo.jpg"
                 alt={`Portrait of ${fname} ${lname}`}
                 style={{
                   width: "120px",

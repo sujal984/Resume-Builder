@@ -13,6 +13,7 @@ function Home() {
     <>
       <Layout>
         <Header
+          className="header"
           style={{
             color: "white",
 

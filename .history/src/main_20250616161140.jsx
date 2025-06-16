@@ -25,10 +25,7 @@ createRoot(document.getElementById("root")).render(
               defaultBorderColor: "#18222b",
             },
             Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
-            },
+            FormItem: {},
           },
         }}
       >

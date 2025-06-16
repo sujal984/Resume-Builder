@@ -13,13 +13,14 @@ function Home() {
     <>
       <Layout>
         <Header
-          style={{
-            color: "white",
+          className="header"
+          // style={{
+          //   color: "white",
 
-            display: "flex",
-            margin: "0px",
-            padding: "0px ",
-          }}
+          //   display: "flex",
+          //   margin: "0px",
+          //   padding: "0px ",
+          // }}
         >
           <h1 className="text-2xl p-2">Choose Your own Template</h1>
         </Header>

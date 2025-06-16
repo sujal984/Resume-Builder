@@ -13,6 +13,7 @@ function Home() {
     <>
       <Layout>
         <Header
+          className="header"
           style={{
             color: "white",
 
@@ -21,7 +22,7 @@ function Home() {
             padding: "0px ",
           }}
         >
-          <h1 className="text-2xl p-2">Choose Your own Template</h1>
+          <h1 className="text-2xl t">Choose Your own Template</h1>
         </Header>
         <div className="content-container">
           <Content>

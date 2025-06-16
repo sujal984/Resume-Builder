@@ -20,14 +20,8 @@ createRoot(document.getElementById("root")).render(
           },
           components: {
             Button: {
+              colorBgContainer: "#18222b",
               // defaultHoverColor:
-              defaultHoverBg: "#fff",
-              defaultBorderColor: "#18222b",
-            },
-            Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
             },
           },
         }}

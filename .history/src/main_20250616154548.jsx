@@ -16,19 +16,7 @@ createRoot(document.getElementById("root")).render(
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "#18222b",
-          },
-          components: {
-            Button: {
-              // defaultHoverColor:
-              defaultHoverBg: "#fff",
-              defaultBorderColor: "#18222b",
-            },
-            Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
-            },
+            colorPrimary: "#1890ff",
           },
         }}
       >

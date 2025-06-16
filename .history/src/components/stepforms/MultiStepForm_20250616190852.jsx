@@ -636,29 +636,23 @@ const MultiStepForm = ({
                                       danger
                                       onClick={() => remove(name)}
                                       style={{
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
+                                        padding: 0,
+                                        marginTop: ".5rem",
+                                        marginLeft: "1rem",
                                       }}
                                       className="remove-btn"
                                     >
-                                      <CloseCircleOutlined color="red" />
+                                      Remove
                                     </Button>
 
                                     <Button
                                       type="link"
                                       danger
                                       onClick={() => remove(name)}
-                                      style={{
-                                        padding: 0,
-                                        display: "none",
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
+                                      style={{ padding: 0, display: "none" }}
                                       className="remove-btn-mobile"
                                     >
-                                      <CloseCircleOutlined color="red" />
+                                      Remove
                                     </Button>
                                   </div>
                                 </Col>
@@ -794,7 +788,7 @@ const MultiStepForm = ({
             <Button
               onClick={next}
               type="primary"
-              className="py-3 px-8 rounded-lg text-white font-medium shadow-md  transition-all mx-1.5 absolute right-0"
+              className="py-3 px-8 rounded-lg text-white font-medium shadow-md  transition-all mx-1.5"
             >
               Next <ArrowRightOutlined />
             </Button>

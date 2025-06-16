@@ -16,12 +16,16 @@ export const FormProvider = ({ children }) => {
       {
         degree: "BCA",
         institute: "Silver Oak College",
-        year: ["2015", "2016"],
+        year: education.year
+          ? [dayjs(education.year[0]), dayjs(education.year[1])]
+          : null,
       },
       {
         degree: "XII, Commerce",
         institute: "KGK School",
-        year: ["2015", "2016"],
+        year: education.year
+          ? [dayjs(education.year[0]), dayjs(education.year[1])]
+          : null,
       },
     ],
     trainings: [

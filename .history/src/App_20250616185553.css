@@ -2,9 +2,6 @@
   margin: 5px;
   padding: 5px;
 } */
-/* body {
-  background-color: #b6d2ee;
-} */
 
 .ant-picker-cell-disabled {
   display: none !important;
@@ -560,9 +557,3 @@
   color: #fff;
 }
 /* step css end */
-
-/* form item css start */
-ant-form-item form-items {
-  margin-bottom: 0 !important;
-}
-/* form item css end */

@@ -1,24 +1,15 @@
 import { Select } from "antd";
-import {
-  ArrowRightOutlined,
-  ArrowLeftOutlined,
-  CloseCircleOutlined,
-} from "@ant-design/icons";
-
+import { ArrowRightOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import StepForms from "./StepForms";
 import { Button, Form, Input, DatePicker, Row, Col } from "antd";
 import dayjs from "dayjs";
 
 import { data } from "react-router-dom";
-const { RangePicker } = DatePicker;
-const yearFormat = "YYYY";
 
 const MultiStepForm = ({
   setFormData,
   formData,
   setStepNo,
-  initialData,
-  setDateRange,
 
   stepNo,
 }) => {
@@ -33,11 +24,6 @@ const MultiStepForm = ({
       ...prev,
       ...allValues,
     }));
-  };
-  const handledateChange = (dates, dateStrings) => {
-    setDateRange(dates);
-    console.log("Dates (dayjs):", dates);
-    console.log("Formatted Strings:", dateStrings);
   };
 
   const next = async () => {
@@ -128,7 +114,7 @@ const MultiStepForm = ({
                   name="basic"
                   form={basicForm}
                   layout="vertical"
-                  initialValues={initialData}
+                  initialValues={formData}
                   className="basic-form w-full "
                   onValuesChange={(_, all) => {
                     if (all.email) {
@@ -291,7 +277,6 @@ const MultiStepForm = ({
                 <h2 className="text-xl font-bold mb-4 pl-0">Education</h2>
                 <Form
                   name="education"
-                  initialValues={initialData}
                   form={educationForm}
                   className="education-form"
                   layout="vertical"
@@ -353,74 +338,49 @@ const MultiStepForm = ({
                                 </Col>
 
                                 <Col span={8}>
-                                  <div className="flex gap-2">
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "year"]}
-                                      label="Year"
-                                      className="form-items"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message:
-                                            "Please select education period!",
-                                        },
-                                        () => ({
-                                          validator(_, value) {
-                                            if (!value || value.length !== 2) {
-                                              return Promise.reject(
-                                                new Error(
-                                                  "Please select both start and end years"
-                                                )
-                                              );
-                                            }
-                                            if (value[0].isAfter(value[1])) {
-                                              return Promise.reject(
-                                                new Error(
-                                                  "End year must be after start year"
-                                                )
-                                              );
-                                            }
-                                            return Promise.resolve();
-                                          },
-                                        }),
-                                      ]}
-                                    >
-                                      <RangePicker
-                                        onChange={handledateChange}
-                                        picker="year"
-                                        format={yearFormat}
-                                        placeholder={["Start Year", "End Year"]}
-                                        style={{ width: "100%" }}
-                                        className="input"
-                                      />
-                                    </Form.Item>
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      className="remove-btn"
-                                      style={{
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      className="remove-btn-mobile"
-                                      style={{ padding: 0, display: "none" }}
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-                                  </div>
+                                  <Form.Item
+                                    {...restField}
+                                    name={[name, "year"]}
+                                    label="Year"
+                                    className="form-items"
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "Please input your year!",
+                                      },
+                                    ]}
+                                  >
+                                    <Input
+                                      className="input"
+                                      maxLength={10}
+                                      placeholder="1990-93"
+                                    />
+                                  </Form.Item>
                                 </Col>
-                                {/* <Col></Col> */}
+
+                                <Col
+                                  span={3}
+                                  className="remove-col "
+                                  style={{ marginTop: "-14px" }}
+                                >
+                                  <Button
+                                    type="link"
+                                    danger
+                                    onClick={() => remove(name)}
+                                    className="remove-btn"
+                                  >
+                                    Remove
+                                  </Button>
+                                  <Button
+                                    type="link"
+                                    danger
+                                    onClick={() => remove(name)}
+                                    className="remove-btn-mobile"
+                                    style={{ padding: 0, display: "none" }}
+                                  >
+                                    Remove
+                                  </Button>
+                                </Col>
                               </Row>
                             </div>
                           ))}
@@ -454,7 +414,6 @@ const MultiStepForm = ({
                 </h2>
                 <Form
                   form={trainingsForm}
-                  initialValues={initialData}
                   className="trainings-form"
                   name="trainings"
                   layout="vertical"
@@ -472,7 +431,7 @@ const MultiStepForm = ({
                               className="mb-2 border p-1 rounded w-full"
                             >
                               <Row gutter={12} align="middle p-2">
-                                <Col span={12}>
+                                <Col span={10}>
                                   <Form.Item
                                     {...restField}
                                     name={[name, "title"]}
@@ -492,57 +451,54 @@ const MultiStepForm = ({
                                   </Form.Item>
                                 </Col>
 
-                                <Col span={12}>
-                                  <div>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "organization"]}
-                                      label="Organization"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message:
-                                            "Please input your organization name!",
-                                        },
-                                      ]}
-                                    >
-                                      <Input
-                                        placeholder="Organization Name"
-                                        className="input"
-                                        maxLength={30}
-                                      />
-                                    </Form.Item>
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      className="remove-btn "
-                                      style={{
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      style={{
-                                        padding: 0,
-                                        display: "none",
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
-                                      className="remove-btn-mobile"
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-                                  </div>
+                                <Col span={10}>
+                                  <Form.Item
+                                    {...restField}
+                                    name={[name, "organization"]}
+                                    label="Organization"
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message:
+                                          "Please input your organization name!",
+                                      },
+                                    ]}
+                                  >
+                                    <Input
+                                      placeholder="Organization Name"
+                                      className="input"
+                                      maxLength={30}
+                                    />
+                                  </Form.Item>
                                 </Col>
+
+                                <Col
+                                  span={4}
+                                  className=" text-center bg-#eff2f9 "
+                                >
+                                  <Button
+                                    type="link"
+                                    danger
+                                    onClick={() => remove(name)}
+                                    // style={{
+                                    //   padding: 0,
+                                    //   marginTop: ".5rem",
+                                    //   marginLeft: "1rem",
+                                    // }}
+                                    className="remove-btn "
+                                  >
+                                    Remove
+                                  </Button>
+                                </Col>
+                                <Button
+                                  type="link"
+                                  danger
+                                  onClick={() => remove(name)}
+                                  style={{ padding: 0, display: "none" }}
+                                  className="remove-btn-mobile"
+                                >
+                                  Remove
+                                </Button>
                               </Row>
                             </div>
                           ))}
@@ -573,7 +529,6 @@ const MultiStepForm = ({
                 <Form
                   form={projectsForm}
                   className="projects-form"
-                  initialValues={initialData}
                   name="projects"
                   layout="vertical"
                   onValuesChange={(_, all) =>
@@ -590,7 +545,7 @@ const MultiStepForm = ({
                               className="mb-2 border p-1 rounded w-full"
                             >
                               <Row gutter={12} align="middle">
-                                <Col span={12}>
+                                <Col span={10}>
                                   <Form.Item
                                     {...restField}
                                     name={[name, "title"]}
@@ -610,58 +565,54 @@ const MultiStepForm = ({
                                   </Form.Item>
                                 </Col>
 
-                                <Col span={12}>
-                                  <div>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "description"]}
-                                      label="Description"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message:
-                                            "Please input your description!",
-                                        },
-                                      ]}
-                                    >
-                                      <Input.TextArea
-                                        // rows={}
-                                        placeholder="Describe project"
-                                        className="input"
-                                        maxLength={200}
-                                      />
-                                    </Form.Item>
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      style={{
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
-                                      className="remove-btn"
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-
-                                    <Button
-                                      type="link"
-                                      danger
-                                      onClick={() => remove(name)}
-                                      style={{
-                                        padding: 0,
-                                        display: "none",
-                                        position: "absolute",
-                                        right: "0",
-                                        top: "0",
-                                      }}
-                                      className="remove-btn-mobile"
-                                    >
-                                      <CloseCircleOutlined color="red" />
-                                    </Button>
-                                  </div>
+                                <Col span={10}>
+                                  <Form.Item
+                                    {...restField}
+                                    name={[name, "description"]}
+                                    label="Description"
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message:
+                                          "Please input your description!",
+                                      },
+                                    ]}
+                                  >
+                                    <Input.TextArea
+                                      rows={1}
+                                      placeholder="Describe project"
+                                      className="input"
+                                      maxLength={200}
+                                    />
+                                  </Form.Item>
                                 </Col>
+
+                                <Col span={4} className="flex items-center">
+                                  <Button
+                                    type="link"
+                                    danger
+                                    onClick={() => remove(name)}
+                                    style={{
+                                      padding: 0,
+                                      marginTop: ".5rem",
+                                      marginLeft: "1rem",
+                                    }}
+                                    className="remove-btn"
+                                  >
+                                    Remove
+                                  </Button>
+                                </Col>
+
+                                {/* Mobile remove button */}
+                                <Button
+                                  type="link"
+                                  danger
+                                  onClick={() => remove(name)}
+                                  style={{ padding: 0, display: "none" }}
+                                  className="remove-btn-mobile"
+                                >
+                                  Remove
+                                </Button>
                               </Row>
                             </div>
                           ))}
@@ -693,7 +644,6 @@ const MultiStepForm = ({
                 </h2>
                 <Form
                   form={skillsForm}
-                  initialValues={initialData}
                   name="skills"
                   layout="vertical"
                   onValuesChange={(_, all) => {
@@ -794,7 +744,7 @@ const MultiStepForm = ({
             <Button
               onClick={next}
               type="primary"
-              className="py-3 px-8 rounded-lg text-white font-medium shadow-md  transition-all mx-1.5 absolute right-0"
+              className="py-3 px-8 rounded-lg text-white font-medium shadow-md  transition-all mx-1.5"
             >
               Next <ArrowRightOutlined />
             </Button>

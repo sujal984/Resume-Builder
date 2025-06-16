@@ -16,7 +16,6 @@ function MasterTemplate1() {
   const pdfRef = useRef();
   const [initialData, setInitialData] = useState({});
   const { formData, setFormData, resetForm } = useFormContext();
-  const [dateRange, setDateRange] = useState([]);
   useEffect(() => {
     if (formData) {
       localStorage.setItem("formData", JSON.stringify(formData));
@@ -159,7 +158,6 @@ function MasterTemplate1() {
               setStepNo={setStepNo}
               handleDownload={handleDownload}
               initialData={initialData}
-              setDateRange={setDateRange}
             />
           )}
         </Col>
@@ -172,12 +170,7 @@ function MasterTemplate1() {
           aria-label="Resume preview"
           style={{}}
         >
-          <Template1
-            data={formData}
-            stepNo={stepNo}
-            pdfRef={pdfRef}
-            dateRange={dateRange}
-          />
+          <Template1 data={formData} stepNo={stepNo} pdfRef={pdfRef} />
         </Col>
       </Row>
       {stepNo === 5 && (

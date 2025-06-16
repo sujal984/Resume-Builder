@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")).render(
               itemMarginBottom: 0,
             },
             Steps: {
-              navArrowColor: "#fff",
+              navArrowColor: "white",
             },
           },
         }}

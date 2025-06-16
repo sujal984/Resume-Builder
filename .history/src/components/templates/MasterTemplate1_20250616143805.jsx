@@ -126,7 +126,7 @@ function MasterTemplate1() {
               <Button
                 type="primary"
                 onClick={handleDownload}
-                // className="py-3 px-8 rounded-lg  bg-green-600 hover:bg-green-700 text-white font-medium shadow-md hover:shadow-lg transition-all mx-1.5"
+                className="py-3 px-8 rounded-lg  bg-green-600 hover:bg-green-700 text-white font-medium shadow-md hover:shadow-lg transition-all mx-1.5"
               >
                 <DownloadOutlined className="mr-2" /> Download Resume
               </Button>

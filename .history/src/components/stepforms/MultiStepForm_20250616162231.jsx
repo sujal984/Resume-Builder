@@ -659,16 +659,6 @@ const MultiStepForm = ({
                       placeholder="Add skills"
                       options={data.skills}
                       className="input"
-                      onChange={(values) => {
-                        const filtered = values
-                          .map((v) => v.replace(/\s/g, ""))
-                          .filter((v) => v.length > 0);
-                        skillsForm.setFieldsValue({ skills: filtered });
-                        setFormData((prev) => ({
-                          ...prev,
-                          skills: filtered,
-                        }));
-                      }}
                     />
                   </Form.Item>
                   <Form.List name="activities">
@@ -683,12 +673,6 @@ const MultiStepForm = ({
                             key={key}
                             name={name}
                             style={{ marginBottom: 8 }}
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input your activity!",
-                              },
-                            ]}
                           >
                             <Input
                               placeholder="Enter activity"

@@ -24,11 +24,6 @@ createRoot(document.getElementById("root")).render(
               defaultHoverBg: "#fff",
               defaultBorderColor: "#18222b",
             },
-            Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
-            },
           },
         }}
       >

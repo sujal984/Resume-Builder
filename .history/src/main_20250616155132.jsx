@@ -21,13 +21,6 @@ createRoot(document.getElementById("root")).render(
           components: {
             Button: {
               // defaultHoverColor:
-              defaultHoverBg: "#fff",
-              defaultBorderColor: "#18222b",
-            },
-            Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
             },
           },
         }}

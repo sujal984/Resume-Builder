@@ -18,18 +18,6 @@ createRoot(document.getElementById("root")).render(
           token: {
             colorPrimary: "#18222b",
           },
-          components: {
-            Button: {
-              // defaultHoverColor:
-              defaultHoverBg: "#fff",
-              defaultBorderColor: "#18222b",
-            },
-            Input: {},
-            FormItem: {
-              labelColor: "#18222b",
-              itemMarginBottom: 0,
-            },
-          },
         }}
       >
         <App />

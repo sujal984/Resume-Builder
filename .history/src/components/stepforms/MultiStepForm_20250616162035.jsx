@@ -432,12 +432,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "title"]}
                                     label="Title"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your title!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Training Title"
@@ -452,13 +446,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "organization"]}
                                     label="Organization"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message:
-                                          "Please input your organization name!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Organization Name"
@@ -546,12 +533,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "title"]}
                                     label="Project Title"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your title!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Enter title"
@@ -566,13 +547,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "description"]}
                                     label="Description"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message:
-                                          "Please input your description!",
-                                      },
-                                    ]}
                                   >
                                     <Input.TextArea
                                       rows={1}
@@ -659,16 +633,6 @@ const MultiStepForm = ({
                       placeholder="Add skills"
                       options={data.skills}
                       className="input"
-                      onChange={(values) => {
-                        const filtered = values
-                          .map((v) => v.replace(/\s/g, ""))
-                          .filter((v) => v.length > 0);
-                        skillsForm.setFieldsValue({ skills: filtered });
-                        setFormData((prev) => ({
-                          ...prev,
-                          skills: filtered,
-                        }));
-                      }}
                     />
                   </Form.Item>
                   <Form.List name="activities">
@@ -683,12 +647,6 @@ const MultiStepForm = ({
                             key={key}
                             name={name}
                             style={{ marginBottom: 8 }}
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input your activity!",
-                              },
-                            ]}
                           >
                             <Input
                               placeholder="Enter activity"

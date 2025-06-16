@@ -660,9 +660,10 @@ const MultiStepForm = ({
                       options={data.skills}
                       className="input"
                       onChange={(values) => {
+                        // Remove any value that is only whitespace or contains spaces
                         const filtered = values
-                          .map((v) => v.replace(/\s/g, ""))
-                          .filter((v) => v.length > 0);
+                          .map((v) => v.replace(/\s/g, "")) // Remove all whitespace
+                          .filter((v) => v.length > 0); // Remove empty strings
                         skillsForm.setFieldsValue({ skills: filtered });
                         setFormData((prev) => ({
                           ...prev,

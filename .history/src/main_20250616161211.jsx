@@ -27,7 +27,6 @@ createRoot(document.getElementById("root")).render(
             Input: {},
             FormItem: {
               labelColor: "#18222b",
-              itemMarginBottom: 0,
             },
           },
         }}

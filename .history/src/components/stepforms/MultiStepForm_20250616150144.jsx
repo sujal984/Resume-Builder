@@ -257,11 +257,7 @@ const MultiStepForm = ({
                         />
                       </Form.Item>
                       <Form.Item name="portfolio" label="Portfolio URL">
-                        <Input
-                          className="input"
-                          style={{ backgroundColor: "#eff2f9" }}
-                          placeholder="Enter your portfolio URL"
-                        />
+                        <Input style={{ backgroundColor: "#eff2f9" }} />
                       </Form.Item>
                     </Col>
                   </Row>
@@ -296,12 +292,6 @@ const MultiStepForm = ({
                                     name={[name, "degree"]}
                                     label="Degree"
                                     className="form-items "
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your degree!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       className="input"
@@ -317,13 +307,6 @@ const MultiStepForm = ({
                                     name={[name, "institute"]}
                                     label="Institution"
                                     className="form-items"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message:
-                                          "Please input your institution name!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       className="input"
@@ -339,12 +322,6 @@ const MultiStepForm = ({
                                     name={[name, "year"]}
                                     label="Year"
                                     className="form-items"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your year!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       className="input"
@@ -357,7 +334,7 @@ const MultiStepForm = ({
                                 <Col
                                   span={3}
                                   className="remove-col "
-                                  style={{ marginTop: "-14px" }}
+                                  style={{ padding: "-18px" }}
                                 >
                                   <Button
                                     type="link"
@@ -432,12 +409,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "title"]}
                                     label="Title"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your title!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Training Title"
@@ -452,13 +423,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "organization"]}
                                     label="Organization"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message:
-                                          "Please input your organization name!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Organization Name"
@@ -546,12 +510,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "title"]}
                                     label="Project Title"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Please input your title!",
-                                      },
-                                    ]}
                                   >
                                     <Input
                                       placeholder="Enter title"
@@ -566,13 +524,6 @@ const MultiStepForm = ({
                                     {...restField}
                                     name={[name, "description"]}
                                     label="Description"
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message:
-                                          "Please input your description!",
-                                      },
-                                    ]}
                                   >
                                     <Input.TextArea
                                       rows={1}
@@ -659,16 +610,6 @@ const MultiStepForm = ({
                       placeholder="Add skills"
                       options={data.skills}
                       className="input"
-                      onChange={(values) => {
-                        const filtered = values
-                          .map((v) => v.replace(/\s/g, ""))
-                          .filter((v) => v.length > 0);
-                        skillsForm.setFieldsValue({ skills: filtered });
-                        setFormData((prev) => ({
-                          ...prev,
-                          skills: filtered,
-                        }));
-                      }}
                     />
                   </Form.Item>
                   <Form.List name="activities">
@@ -683,12 +624,6 @@ const MultiStepForm = ({
                             key={key}
                             name={name}
                             style={{ marginBottom: 8 }}
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input your activity!",
-                              },
-                            ]}
                           >
                             <Input
                               placeholder="Enter activity"
@@ -730,7 +665,7 @@ const MultiStepForm = ({
           {stepNo > 0 && stepNo < 5 && (
             <Button
               onClick={prev}
-              className="flex items-center py-3 px-6 rounded-lg bg-gray-100 text-gray-700 transition-colors"
+              className="flex items-center py-3 px-6 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
               style={{ marginRight: 1 }}
             >
               <ArrowLeftOutlined className="mr-2" /> Back
@@ -740,7 +675,7 @@ const MultiStepForm = ({
             <Button
               onClick={next}
               type="primary"
-              className="py-3 px-8 rounded-lg text-white font-medium shadow-md  transition-all mx-1.5"
+              // className="py-3 px-8 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transition-all mx-1.5"
             >
               Next <ArrowRightOutlined />
             </Button>
@@ -749,7 +684,7 @@ const MultiStepForm = ({
             <Button
               onClick={next}
               type="primary"
-              className="py-3 px-8 rounded-lg text-white font-medium shadow-md transition-all mx-1.5"
+              // className="py-3 px-8 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transition-all mx-1.5"
             >
               Submit & Review
             </Button>

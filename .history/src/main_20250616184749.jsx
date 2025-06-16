@@ -29,9 +29,6 @@ createRoot(document.getElementById("root")).render(
               labelColor: "#18222b",
               itemMarginBottom: 0,
             },
-            Steps: {
-              navArrowColor: "#fff",
-            },
           },
         }}
       >

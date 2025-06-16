@@ -13,16 +13,8 @@ export const FormProvider = ({ children }) => {
     location: "Ahmedabad",
     objective: "To work in a challenging environment...",
     education: [
-      {
-        degree: "BCA",
-        institute: "Silver Oak College",
-        year: ["2015", "2016"],
-      },
-      {
-        degree: "XII, Commerce",
-        institute: "KGK School",
-        year: ["2015", "2016"],
-      },
+      { degree: "BCA", institute: "Silver Oak College", year: ["2015", "2016"]},
+      { degree: "XII, Commerce", institute: "KGK School", year: ["2015", "2016"],
     ],
     trainings: [
       {

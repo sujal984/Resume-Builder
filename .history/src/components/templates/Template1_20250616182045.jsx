@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 
 import dayjs from "dayjs";
 
-function Template1({ title, data, newStep, pdfRef, dateRange }) {
+function Template1({ title, data, newStep, pdfRef dateRange}) {
   const {
     fname = "",
     lname = "",
@@ -76,8 +76,8 @@ function Template1({ title, data, newStep, pdfRef, dateRange }) {
               {education.map((edu, index) => (
                 <li key={index} className="text-gray-700">
                   <strong>{edu.degree}</strong> - {edu.institute} ({" "}
-                  {dateRange && dateRange[0]?.format("YYYY")} -{" "}
-                  {dateRange && dateRange[1]?.format("YYYY")} )
+                  {dateRange[0]?.format("YYYY")} -{" "}
+                  {dateRange[1]?.format("YYYY")} )
                 </li>
               ))}
             </ul>

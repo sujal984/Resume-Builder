@@ -159,7 +159,6 @@ function MasterTemplate1() {
               setStepNo={setStepNo}
               handleDownload={handleDownload}
               initialData={initialData}
-              setDateRange={setDateRange}
             />
           )}
         </Col>
@@ -172,12 +171,7 @@ function MasterTemplate1() {
           aria-label="Resume preview"
           style={{}}
         >
-          <Template1
-            data={formData}
-            stepNo={stepNo}
-            pdfRef={pdfRef}
-            dateRange={dateRange}
-          />
+          <Template1 data={formData} stepNo={stepNo} pdfRef={pdfRef} />
         </Col>
       </Row>
       {stepNo === 5 && (

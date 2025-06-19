@@ -1,0 +1,23 @@
+{
+  "token": {
+    "colorPrimary": "#3983fa"
+  },
+  "components": {
+    "Button": {
+      "defaultHoverBg": "#fff",
+      "defaultBorderColor": "#18222b"
+    },
+
+    "FormItem": {
+      "labelColor": "#18222b",
+      " itemMarginBottom": 0
+    },
+    "Steps": {
+      "navArrowColor": "#fff"
+    },
+    "Layout": {
+      "headerColor": "#3983fa",
+      "headerBg": "fff"
+    }
+  }
+}

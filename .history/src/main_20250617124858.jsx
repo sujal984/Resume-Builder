@@ -1,0 +1,44 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { ConfigProvider } from "antd";
+import { FormProvider } from "./context/FormContext.jsx";
+import "@ant-design/v5-patch-for-react-19";
+import "./index.css";
+import "./App.css";
+import theme from "./theme.json";
+
+import App from "./App.jsx";
+// import "@ant-design/v5-patch-for-react-19";
+import { BrowserRouter } from "react-router-dom";
+
+createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <FormProvider>
+      <ConfigProvider
+        theme={theme}
+        // theme={{
+        //   token: {
+        //     colorPrimary: "#18222b",
+        //   },
+        //   components: {
+        //     Button: {
+        //       // defaultHoverColor:
+        //       defaultHoverBg: "#fff",
+        //       defaultBorderColor: "#18222b",
+        //     },
+        //     Input: {},
+        //     FormItem: {
+        //       labelColor: "#18222b",
+        //       itemMarginBottom: 0,
+        //     },
+        //     Steps: {
+        //       navArrowColor: "#fff",
+        //     },
+        //   },
+        // }}
+      >
+        <App />
+      </ConfigProvider>
+    </FormProvider>
+  </BrowserRouter>
+);

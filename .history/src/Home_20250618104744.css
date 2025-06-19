@@ -1,0 +1,28 @@
+.fst-para {
+  width: 461px;
+  font-size: 18px;
+  line-height: 32.4px;
+  margin-top: 30px;
+}
+
+.content-btn {
+  margin-top: 30px;
+  padding: 20px 56px 18px;
+  background-color: #e44747;
+  width: 343px;
+  height: 60px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+.image-part::after {
+  content: "";
+  display: block;
+  width: 211px;
+  height: 199px;
+  background-image: url("./assets/backgroundbeforetriangle2");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+}

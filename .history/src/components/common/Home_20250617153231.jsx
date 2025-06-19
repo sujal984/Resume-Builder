@@ -1,0 +1,25 @@
+import React from "react";
+import { Layout, Button } from "antd";
+const { Header, Content, Footer } = Layout;
+function Home() {
+  return (
+    <>
+      <Layout>
+        <Header>
+          <div className="container">
+            <div>
+              <h1 className="text-2xl font-bold">Zety</h1>
+            </div>
+            <div>
+              <Button>MY ACCOUNT</Button>
+            </div>
+          </div>
+        </Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+      </Layout>
+    </>
+  );
+}
+
+export default Home;

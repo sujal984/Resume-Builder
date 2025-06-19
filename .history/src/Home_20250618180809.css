@@ -1,0 +1,90 @@
+.fst-para {
+  font-size: 1.2rem;
+  line-height: 32.4px;
+  margin-top: 30px;
+}
+
+.content-btn {
+  margin-top: 30px;
+  padding: 20px 56px 18px;
+  background-color: #e44747 !important;
+  width: 343px;
+  height: 60px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white !important;
+}
+
+.image-part::after {
+  content: url("./assets//backgorundbeforetriangles.svg");
+
+  position: absolute;
+  bottom: 20%;
+  right: -15%;
+  display: block;
+}
+.image-part::before {
+  content: url("./assets//backgorundbeforetriangles.svg");
+  transform: rotate(-180deg);
+
+  position: absolute;
+  height: auto;
+  width: fit-content;
+  bottom: 35%;
+  left: -15%;
+
+  /* 
+  xs: '480px',
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1400px', */
+}
+@media (max-width: 576px) {
+  .fst-page-img {
+    height: 300px;
+    width: 300px;
+  }
+  .image-part::after {
+    bottom: 25%;
+    right: 10%;
+  }
+  .image-part::before {
+    left: 10%;
+    bottom: 70%;
+  }
+}
+@media (min-width: 577px) and (max-width: 992px) {
+  .image-part::before {
+    bottom: 20%;
+    left: 20%;
+  }
+  .image-part::after {
+    /* bottom: 30%; */
+    right: 0%;
+    bottom: 10%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .image-part::before {
+    bottom: 35%;
+    left: -10%;
+  }
+  .image-part::after {
+    bottom: 10%;
+    right: 0%;
+  }
+}
+
+@media (min-width: 1201px) {
+  .image-part::before {
+    bottom: 30%;
+    left: 0%;
+  }
+  .image-part::after {
+    bottom: 25%;
+    right: 0%;
+  }
+}

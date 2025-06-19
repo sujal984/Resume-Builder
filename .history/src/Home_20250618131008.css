@@ -1,0 +1,51 @@
+.fst-para {
+  width: 461px;
+  font-size: 18px;
+  line-height: 32.4px;
+  margin-top: 30px;
+}
+
+.content-btn {
+  margin-top: 30px;
+  padding: 20px 56px 18px;
+  background-color: #e44747 !important;
+  width: 343px;
+  height: 60px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white !important;
+}
+
+.image-part::after {
+  content: url("./assets//backgorundbeforetriangles.svg");
+
+  position: absolute;
+  bottom: 20%;
+  right: -15%;
+  display: block;
+}
+.image-part::before {
+  content: url("./assets//backgorundbeforetriangles.svg");
+  transform: rotate(-180deg);
+
+  position: absolute;
+  height: auto;
+  width: fit-content;
+  bottom: 35%;
+  left: -15%;
+}
+@media (max-width: 768px) {
+  .image-part {
+    height: 50%;
+    width: 50%;
+  }
+  .image-part::after {
+    bottom: 30%;
+    right: 10%;
+  }
+  .image-part::before {
+    bottom: 45%;
+    left: 10%;
+  }
+}

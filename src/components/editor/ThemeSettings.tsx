@@ -75,6 +75,25 @@ export default function ThemeSettings() {
         setResumeData({ ...resumeData, templateId: value });
     };
 
+    const handleLineHeightChange = (value: string) => {
+        const lh = parseFloat(value);
+        setResumeData({ ...resumeData, lineHeight: isNaN(lh) ? resumeData.lineHeight : lh });
+    };
+
+    const handleSectionSpacingChange = (value: number) => {
+        setResumeData({ ...resumeData, sectionSpacing: value });
+    };
+
+    const handleLayoutModeChange = (value: string) => {
+        const mode = value === "single-column" ? "single-column" : "two-column";
+        setResumeData({ ...resumeData, layoutMode: mode });
+    };
+
+    const handleColumnRatioChange = (value: string) => {
+        const ratio = (["30/70", "40/60", "50/50"].includes(value) ? value : "30/70") as "30/70" | "40/60" | "50/50";
+        setResumeData({ ...resumeData, columnRatio: ratio });
+    };
+
     return (
         <div className="space-y-6 p-4">
             {/* Template Selection */}
@@ -176,7 +195,7 @@ export default function ThemeSettings() {
 
                     <div className="space-y-2">
                         <Label>Line Height</Label>
-                        <Select defaultValue="1.5">
+                        <Select value={(resumeData.lineHeight || 1.6).toString()} onValueChange={handleLineHeightChange}>
                             <SelectTrigger>
                                 <SelectValue placeholder="Select line height" />
                             </SelectTrigger>
@@ -214,7 +233,8 @@ export default function ThemeSettings() {
                     <div className="space-y-2">
                         <Label>Section Spacing</Label>
                         <Slider
-                            defaultValue={16}
+                            value={resumeData.sectionSpacing || 16}
+                            onChange={handleSectionSpacingChange}
                             min={8}
                             max={32}
                             marks={{
@@ -224,6 +244,33 @@ export default function ThemeSettings() {
                                 32: "Loose",
                             }}
                         />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label>Layout Mode</Label>
+                        <Select value={resumeData.layoutMode || "two-column"} onValueChange={handleLayoutModeChange}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select layout" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="single-column">Single Column</SelectItem>
+                                <SelectItem value="two-column">Two Column</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label>Column Ratio</Label>
+                        <Select value={resumeData.columnRatio || "30/70"} onValueChange={handleColumnRatioChange}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select ratio" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="30/70">30 / 70</SelectItem>
+                                <SelectItem value="40/60">40 / 60</SelectItem>
+                                <SelectItem value="50/50">50 / 50</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
             </Card>

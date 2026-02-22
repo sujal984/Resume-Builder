@@ -18,6 +18,70 @@ export default async function EditorPage({ params }: { params: Promise<{ resumeI
 
     const { resumeId } = await params;
 
+    // Create-on-new support
+    if (resumeId === "new") {
+        const slug = `resume-${Date.now()}`;
+        const defaultData = {
+            id: "",
+            title: "Untitled Resume",
+            slug,
+            sections: [
+                {
+                    id: "personal",
+                    type: "personal",
+                    title: "Personal Information",
+                    isVisible: true,
+                    items: [
+                        {
+                            id: "default-personal",
+                            fullName: "",
+                            email: "",
+                            phone: "",
+                            address: "",
+                            jobTitle: "",
+                            website: "",
+                            linkedin: "",
+                        },
+                    ],
+                },
+                {
+                    id: "summary",
+                    type: "summary",
+                    title: "Professional Summary",
+                    isVisible: true,
+                    items: [
+                        {
+                            id: "default-summary",
+                            content: "",
+                        },
+                    ],
+                },
+                { id: "experience", type: "experience", title: "Work Experience", isVisible: true, items: [] },
+                { id: "education", type: "education", title: "Education", isVisible: true, items: [] },
+                { id: "skills", type: "skills", title: "Skills", isVisible: true, items: [] },
+            ],
+            themeColor: "#6366F1",
+            fontFamily: "Inter",
+            templateId: "professional",
+            lineHeight: 1.6,
+            sectionSpacing: 16,
+            columnRatio: "30/70",
+        };
+        const inserted = await db
+            .insert(resumes)
+            .values({
+                userId: session.user.id,
+                title: "Untitled Resume",
+                slug,
+                data: defaultData,
+                templateId: "professional",
+            })
+            .returning({ id: resumes.id });
+        if (inserted?.[0]?.id) {
+            redirect(`/editor/${inserted[0].id}`);
+        }
+    }
+
     const [resume] = await db
         .select()
         .from(resumes)

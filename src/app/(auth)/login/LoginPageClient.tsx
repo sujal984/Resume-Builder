@@ -153,7 +153,7 @@ export default function LoginPageClient() {
                                 type="password"
                                 placeholder="••••••••"
                                 required
-                                minLength={6}
+                                minLength={isRegister ? 6 : undefined}
                                 className="h-11"
                             />
                         </div>

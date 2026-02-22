@@ -1,13 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { Form, Input, DatePicker, Button, Space, Card, message, Modal, Tabs, FormInstance } from "antd";
-import { 
-  PlusOutlined, 
-  DeleteOutlined, 
+import {
+  Form,
+  Input,
+  DatePicker,
+  Button,
+  Space,
+  Card,
+  message,
+  Modal,
+  Tabs,
+  FormInstance,
+  Checkbox,
+} from "antd";
+import {
+  PlusOutlined,
+  DeleteOutlined,
   ThunderboltOutlined,
   CheckOutlined,
-  CopyOutlined 
+  CopyOutlined,
 } from "@ant-design/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import dayjs from "dayjs";
@@ -32,9 +44,17 @@ interface ExperienceFormProps {
   onValuesChange?: (values: ExperienceItem[]) => void;
 }
 
-export default function ExperienceForm({ form, initialValues = [], onValuesChange }: ExperienceFormProps) {
-  const [experiences, setExperiences] = useState<ExperienceItem[]>(initialValues);
-  const [enhancingBullet, setEnhancingBullet] = useState<{ expId: string; bulletIndex: number } | null>(null);
+export default function ExperienceForm({
+  form,
+  initialValues = [],
+  onValuesChange,
+}: ExperienceFormProps) {
+  const [experiences, setExperiences] =
+    useState<ExperienceItem[]>(initialValues);
+  const [enhancingBullet, setEnhancingBullet] = useState<{
+    expId: string;
+    bulletIndex: number;
+  } | null>(null);
   const [enhancedResults, setEnhancedResults] = useState<any>(null);
   const [showEnhanceModal, setShowEnhanceModal] = useState(false);
 
@@ -55,29 +75,29 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
   };
 
   const removeExperience = (id: string) => {
-    const updated = experiences.filter(exp => exp.id !== id);
+    const updated = experiences.filter((exp) => exp.id !== id);
     setExperiences(updated);
     if (onValuesChange) onValuesChange(updated);
   };
 
   const updateExperience = (id: string, field: string, value: any) => {
-    const updated = experiences.map(exp =>
-      exp.id === id ? { ...exp, [field]: value } : exp
+    const updated = experiences.map((exp) =>
+      exp.id === id ? { ...exp, [field]: value } : exp,
     );
     setExperiences(updated);
     if (onValuesChange) onValuesChange(updated);
   };
 
   const addBullet = (expId: string) => {
-    const updated = experiences.map(exp =>
-      exp.id === expId ? { ...exp, highlights: [...exp.highlights, ""] } : exp
+    const updated = experiences.map((exp) =>
+      exp.id === expId ? { ...exp, highlights: [...exp.highlights, ""] } : exp,
     );
     setExperiences(updated);
     if (onValuesChange) onValuesChange(updated);
   };
 
   const updateBullet = (expId: string, bulletIndex: number, value: string) => {
-    const updated = experiences.map(exp => {
+    const updated = experiences.map((exp) => {
       if (exp.id === expId) {
         const newHighlights = [...exp.highlights];
         newHighlights[bulletIndex] = value;
@@ -90,9 +110,12 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
   };
 
   const removeBullet = (expId: string, bulletIndex: number) => {
-    const updated = experiences.map(exp => {
+    const updated = experiences.map((exp) => {
       if (exp.id === expId) {
-        return { ...exp, highlights: exp.highlights.filter((_, i) => i !== bulletIndex) };
+        return {
+          ...exp,
+          highlights: exp.highlights.filter((_, i) => i !== bulletIndex),
+        };
       }
       return exp;
     });
@@ -101,14 +124,14 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
   };
 
   const handleEnhanceBullet = async (expId: string, bulletIndex: number) => {
-    const exp = experiences.find(e => e.id === expId);
+    const exp = experiences.find((e) => e.id === expId);
     if (!exp || !exp.highlights[bulletIndex]) {
       message.warning("Please enter a bullet point first");
       return;
     }
 
     setEnhancingBullet({ expId, bulletIndex });
-    
+
     try {
       const response = await fetch("/api/ai/enhance-bullet", {
         method: "POST",
@@ -118,7 +141,7 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
           context: {
             jobTitle: exp.position,
             company: exp.company,
-          }
+          },
         }),
       });
 
@@ -140,7 +163,7 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
       updateBullet(
         enhancingBullet.expId,
         enhancingBullet.bulletIndex,
-        enhancedResults[version]
+        enhancedResults[version],
       );
       setShowEnhanceModal(false);
       setEnhancedResults(null);
@@ -177,29 +200,45 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
               }
             >
               <Form layout="vertical" size="large">
-                <Form.Item 
-                  label="Company Name" 
+                <Form.Item
+                  label="Company Name"
                   required
-                  validateStatus={!exp.company && exp.company !== undefined ? "error" : ""}
-                  help={!exp.company && exp.company !== undefined ? "Company name is required" : ""}
+                  validateStatus={
+                    !exp.company && exp.company !== undefined ? "error" : ""
+                  }
+                  help={
+                    !exp.company && exp.company !== undefined
+                      ? "Company name is required"
+                      : ""
+                  }
                 >
                   <Input
                     placeholder="Google, Microsoft, etc."
                     value={exp.company}
-                    onChange={(e) => updateExperience(exp.id, "company", e.target.value)}
+                    onChange={(e) =>
+                      updateExperience(exp.id, "company", e.target.value)
+                    }
                   />
                 </Form.Item>
 
-                <Form.Item 
-                  label="Job Title" 
+                <Form.Item
+                  label="Job Title"
                   required
-                  validateStatus={!exp.position && exp.position !== undefined ? "error" : ""}
-                  help={!exp.position && exp.position !== undefined ? "Job title is required" : ""}
+                  validateStatus={
+                    !exp.position && exp.position !== undefined ? "error" : ""
+                  }
+                  help={
+                    !exp.position && exp.position !== undefined
+                      ? "Job title is required"
+                      : ""
+                  }
                 >
                   <Input
                     placeholder="Senior Software Engineer"
                     value={exp.position}
-                    onChange={(e) => updateExperience(exp.id, "position", e.target.value)}
+                    onChange={(e) =>
+                      updateExperience(exp.id, "position", e.target.value)
+                    }
                   />
                 </Form.Item>
 
@@ -207,12 +246,14 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                   <Input
                     placeholder="San Francisco, CA"
                     value={exp.location}
-                    onChange={(e) => updateExperience(exp.id, "location", e.target.value)}
+                    onChange={(e) =>
+                      updateExperience(exp.id, "location", e.target.value)
+                    }
                   />
                 </Form.Item>
 
-                <Form.Item 
-                  label="Employment Period" 
+                <Form.Item
+                  label="Employment Period"
                   required
                   validateStatus={!exp.startDate ? "error" : ""}
                   help={!exp.startDate ? "Start date is required" : ""}
@@ -221,17 +262,49 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                     <RangePicker
                       className="w-full"
                       picker="month"
+                      format="YYYY-MM"
+                      allowClear
+                      placeholder={[
+                        "Start month",
+                        exp.current ? "Present" : "End month",
+                      ]}
                       value={[
                         exp.startDate ? dayjs(exp.startDate) : null,
-                        exp.endDate ? dayjs(exp.endDate) : null
+                        exp.current
+                          ? null
+                          : exp.endDate
+                            ? dayjs(exp.endDate)
+                            : null,
                       ]}
                       onChange={(dates) => {
-                        if (dates) {
-                          updateExperience(exp.id, "startDate", dates[0]?.format("YYYY-MM") || "");
-                          updateExperience(exp.id, "endDate", dates[1]?.format("YYYY-MM") || "");
+                        updateExperience(
+                          exp.id,
+                          "startDate",
+                          dates?.[0]?.format("YYYY-MM") || "",
+                        );
+                        // If 'current' is on, keep endDate empty
+                        if (!exp.current) {
+                          updateExperience(
+                            exp.id,
+                            "endDate",
+                            dates?.[1]?.format("YYYY-MM") || "",
+                          );
                         }
                       }}
                     />
+                    <Checkbox
+                      checked={!!exp.current}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        updateExperience(exp.id, "current", checked);
+                        if (checked) {
+                          // Clear end date if currently working
+                          updateExperience(exp.id, "endDate", "");
+                        }
+                      }}
+                    >
+                      I currently work here
+                    </Checkbox>
                   </Space>
                 </Form.Item>
 
@@ -243,15 +316,22 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                           rows={2}
                           placeholder="• Led a team of 5 engineers to develop..."
                           value={bullet}
-                          onChange={(e) => updateBullet(exp.id, bulletIndex, e.target.value)}
+                          onChange={(e) =>
+                            updateBullet(exp.id, bulletIndex, e.target.value)
+                          }
                           className="flex-1"
                         />
                         <Space direction="vertical">
                           <Button
                             type="primary"
                             icon={<ThunderboltOutlined />}
-                            onClick={() => handleEnhanceBullet(exp.id, bulletIndex)}
-                            loading={enhancingBullet?.expId === exp.id && enhancingBullet?.bulletIndex === bulletIndex}
+                            onClick={() =>
+                              handleEnhanceBullet(exp.id, bulletIndex)
+                            }
+                            loading={
+                              enhancingBullet?.expId === exp.id &&
+                              enhancingBullet?.bulletIndex === bulletIndex
+                            }
                             className="bg-gradient-to-r from-violet-600 to-indigo-600 border-none"
                           >
                             AI Enhance
@@ -314,7 +394,9 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                 children: (
                   <div className="space-y-4">
                     <div className="bg-violet-50 p-4 rounded-lg border border-violet-200">
-                      <p className="text-gray-800">{enhancedResults.standard}</p>
+                      <p className="text-gray-800">
+                        {enhancedResults.standard}
+                      </p>
                     </div>
                     <Button
                       type="primary"
@@ -333,7 +415,9 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                 children: (
                   <div className="space-y-4">
                     <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                      <p className="text-gray-800">{enhancedResults.metricFocused}</p>
+                      <p className="text-gray-800">
+                        {enhancedResults.metricFocused}
+                      </p>
                     </div>
                     <Button
                       type="primary"
@@ -352,7 +436,9 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
                 children: (
                   <div className="space-y-4">
                     <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                      <p className="text-gray-800">{enhancedResults.impactFocused}</p>
+                      <p className="text-gray-800">
+                        {enhancedResults.impactFocused}
+                      </p>
                     </div>
                     <Button
                       type="primary"
@@ -368,7 +454,7 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
             ]}
           />
         )}
-        
+
         {enhancedResults?.suggestions && (
           <div className="mt-4 bg-amber-50 p-4 rounded-lg border border-amber-200">
             <h4 className="font-semibold mb-2">💡 Tips:</h4>
@@ -383,9 +469,14 @@ export default function ExperienceForm({ form, initialValues = [], onValuesChang
 
       {/* Tips */}
       <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-        <p className="text-sm text-blue-800 font-medium mb-2">💡 Writing Great Bullet Points:</p>
+        <p className="text-sm text-blue-800 font-medium mb-2">
+          💡 Writing Great Bullet Points:
+        </p>
         <ul className="text-sm text-blue-700 space-y-1 ml-4">
-          <li>• Start with strong action verbs (Led, Developed, Increased, Reduced)</li>
+          <li>
+            • Start with strong action verbs (Led, Developed, Increased,
+            Reduced)
+          </li>
           <li>• Include specific metrics and numbers (%, $, time saved)</li>
           <li>• Show the impact of your work (revenue, efficiency, quality)</li>
           <li>• Use the STAR method (Situation, Task, Action, Result)</li>

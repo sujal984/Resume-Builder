@@ -71,7 +71,7 @@ export async function registerUser(formData: FormData) {
         await signIn("credentials", {
             email,
             password,
-            redirectTo: "/editor/new",
+            redirectTo: "/dashboard",
         });
     } catch (error) {
         // NEXT_REDIRECT errors should be re-thrown (signIn redirects on success)
@@ -133,9 +133,9 @@ export async function loginUser(formData: FormData) {
 }
 
 export async function loginWithGoogle() {
-    await signIn("google", { redirectTo: "/editor/new" });
+    await signIn("google", { redirectTo: "/dashboard" });
 }
 
 export async function loginWithGitHub() {
-    await signIn("github", { redirectTo: "/editor/new" });
+    await signIn("github", { redirectTo: "/dashboard" });
 }

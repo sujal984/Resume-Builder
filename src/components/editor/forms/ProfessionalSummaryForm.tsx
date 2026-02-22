@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Form, Input, Button, Space, message, Spin, FormInstance } from "antd";
 import { ThunderboltOutlined, ReloadOutlined, CheckOutlined } from "@ant-design/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { useResumeStore } from "@/lib/stores/useResumeStore";
 
 const { TextArea } = Input;
 
@@ -22,6 +23,24 @@ export default function ProfessionalSummaryForm({
 }: ProfessionalSummaryFormProps) {
   const [generating, setGenerating] = useState(false);
   const [generatedSummary, setGeneratedSummary] = useState("");
+  const { resumeData } = useResumeStore();
+
+  const localFallbackSummary = () => {
+    const personal = resumeData.sections.find(s => s.type === "personal");
+    const p = (personal?.items[0] || {}) as any;
+    const name = p.fullName || "A dedicated professional";
+    const title = jobTitle || p.jobTitle || "Professional";
+    const years = "3+ years";
+    const skillsSection = resumeData.sections.find(s => s.type === "skills");
+    const skillsList = (skillsSection?.items || []).map((i:any) => i.name).filter(Boolean);
+    const topSkills = skillsList.slice(0,3).join(", ");
+    const companyExp = "delivering results across fast-paced environments";
+    const closing = "Focused on impact, quality, and continuous improvement.";
+    const base = `${name} (${title}) with ${years} of experience ${companyExp}.`;
+    const skills = topSkills ? ` Core strengths include ${topSkills}.` : "";
+    const value = ` Known for ownership, clear communication, and problem solving. ${closing}`;
+    return `${base}${skills}${value}`;
+  };
 
   const handleAIGenerate = async () => {
     setGenerating(true);
@@ -36,13 +55,25 @@ export default function ProfessionalSummaryForm({
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to generate summary");
+      if (!response.ok) {
+        let msg = "Failed to generate summary";
+        try {
+          const err = await response.json();
+          if (err?.error) msg = err.error;
+        } catch {}
+        const fallback = localFallbackSummary();
+        setGeneratedSummary(fallback);
+        message.warning(`${msg}. Generated a local summary instead.`);
+        return;
+      }
 
       const data = await response.json();
       setGeneratedSummary(data.summary);
       message.success("AI summary generated successfully!");
     } catch (error) {
-      message.error("Failed to generate summary. Please try again.");
+      const fallback = localFallbackSummary();
+      setGeneratedSummary(fallback);
+      message.warning("AI not available. Generated a local summary instead.");
     } finally {
       setGenerating(false);
     }

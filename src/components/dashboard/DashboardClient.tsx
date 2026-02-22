@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Button, Empty, Input, Modal, message, Dropdown, Space } from "antd";
+import {
+  Card,
+  Button,
+  Empty,
+  Input,
+  Modal,
+  message,
+  Dropdown,
+  Space,
+} from "antd";
 import {
   PlusOutlined,
   SearchOutlined,
@@ -15,6 +24,8 @@ import {
 } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { TEMPLATE_REGISTRY } from "@/lib/templates/registry";
 import { useRouter } from "next/navigation";
 
 type Resume = {
@@ -47,7 +58,7 @@ export default function DashboardClient({
   const [loading, setLoading] = useState(false);
 
   const filteredResumes = resumes.filter((resume) =>
-    resume.title.toLowerCase().includes(searchQuery.toLowerCase())
+    resume.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const handleCreateResume = async () => {
@@ -79,7 +90,8 @@ export default function DashboardClient({
   const handleDeleteResume = async (resumeId: string) => {
     Modal.confirm({
       title: "Delete Resume",
-      content: "Are you sure you want to delete this resume? This action cannot be undone.",
+      content:
+        "Are you sure you want to delete this resume? This action cannot be undone.",
       okText: "Delete",
       okType: "danger",
       onOk: async () => {
@@ -175,6 +187,9 @@ export default function DashboardClient({
               <span className="text-sm text-gray-600">
                 Welcome, {user.name || user.email}
               </span>
+              <Button href="/" className="border-gray-300" variant="outlined">
+                Home
+              </Button>
               <Button type="primary" href="/api/auth/signout">
                 Sign Out
               </Button>
@@ -188,7 +203,9 @@ export default function DashboardClient({
         {/* Top Bar */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">My Resumes</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              My Resumes
+            </h1>
             <p className="text-gray-600">
               {resumes.length} {resumes.length === 1 ? "resume" : "resumes"}
             </p>
@@ -233,18 +250,18 @@ export default function DashboardClient({
                   hoverable
                   className="h-full shadow-md hover:shadow-xl transition-all duration-300 border-gray-200"
                   cover={
-                    <div className="h-48 bg-gradient-to-br from-violet-100 to-indigo-100 flex items-center justify-center relative overflow-hidden">
-                      <div className="w-32 h-44 bg-white rounded-lg shadow-2xl p-3">
-                        <div className="w-full h-2 bg-violet-600 rounded mb-2" />
-                        <div className="w-3/4 h-1.5 bg-gray-200 rounded mb-3" />
-                        <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                        <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                        <div className="w-2/3 h-1 bg-gray-100 rounded mb-3" />
-                        <div className="w-1/2 h-1.5 bg-gray-200 rounded mb-2" />
-                        <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                        <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                        <div className="w-3/4 h-1 bg-gray-100 rounded" />
-                      </div>
+                    <div className="h-48 bg-gray-50 flex items-center justify-center relative overflow-hidden">
+                      <Image
+                        src={
+                          TEMPLATE_REGISTRY[resume.templateId || "professional"]
+                            ?.thumbnail || "/templates/modern-thumb.png"
+                        }
+                        alt="Template thumbnail"
+                        width={640}
+                        height={240}
+                        className="object-cover w-full h-full"
+                        priority
+                      />
                     </div>
                   }
                   actions={[
@@ -276,7 +293,11 @@ export default function DashboardClient({
                       </div>
                     }
                     description={
-                      <Space direction="vertical" size="small" className="w-full">
+                      <Space
+                        direction="vertical"
+                        size="small"
+                        className="w-full"
+                      >
                         <div className="flex items-center gap-2 text-xs text-gray-500">
                           <ClockCircleOutlined />
                           <span>Updated {formatDate(resume.updatedAt)}</span>

@@ -39,15 +39,21 @@ export default function EditorCanvas() {
     },
   ];
 
-  const personalSection = resumeData.sections.find(s => s.type === 'personal');
+  const personalSection = resumeData.sections.find(
+    (s) => s.type === "personal",
+  );
   const personalItem = personalSection?.items[0];
 
-  const summarySection = resumeData.sections.find(s => s.type === 'summary');
+  const summarySection = resumeData.sections.find((s) => s.type === "summary");
   const summaryItem = summarySection?.items[0];
 
-  const experienceSection = resumeData.sections.find(s => s.type === 'experience');
-  const educationSection = resumeData.sections.find(s => s.type === 'education');
-  const skillsSection = resumeData.sections.find(s => s.type === 'skills');
+  const experienceSection = resumeData.sections.find(
+    (s) => s.type === "experience",
+  );
+  const educationSection = resumeData.sections.find(
+    (s) => s.type === "education",
+  );
+  const skillsSection = resumeData.sections.find((s) => s.type === "skills");
 
   const handleNext = async () => {
     try {
@@ -61,11 +67,13 @@ export default function EditorCanvas() {
           message.error("Please add at least one work experience");
           return;
         }
-        const hasInvalidExp = experienceSection.items.some((exp: any) => 
-          !exp.company || !exp.position || !exp.startDate
+        const hasInvalidExp = experienceSection.items.some(
+          (exp: any) => !exp.company || !exp.position || !exp.startDate,
         );
         if (hasInvalidExp) {
-          message.error("Please fill in all required fields for work experience");
+          message.error(
+            "Please fill in all required fields for work experience",
+          );
           return;
         }
       } else if (currentStep === 3) {
@@ -74,8 +82,9 @@ export default function EditorCanvas() {
           message.error("Please add at least one education entry");
           return;
         }
-        const hasInvalidEdu = educationSection.items.some((edu: any) => 
-          !edu.institution || !edu.studyType || !edu.area || !edu.startDate
+        const hasInvalidEdu = educationSection.items.some(
+          (edu: any) =>
+            !edu.institution || !edu.studyType || !edu.area || !edu.startDate,
         );
         if (hasInvalidEdu) {
           message.error("Please fill in all required fields for education");
@@ -88,7 +97,7 @@ export default function EditorCanvas() {
           return;
         }
       }
-      
+
       if (currentStep < steps.length - 1) {
         setCurrentStep(currentStep + 1);
         message.success("Progress saved!");
@@ -117,22 +126,22 @@ export default function EditorCanvas() {
   };
 
   const handleExperienceChange = (values: any) => {
-    const updated = resumeData.sections.map(section =>
-      section.type === "experience" ? { ...section, items: values } : section
+    const updated = resumeData.sections.map((section) =>
+      section.type === "experience" ? { ...section, items: values } : section,
     );
     setResumeData({ ...resumeData, sections: updated });
   };
 
   const handleEducationChange = (values: any) => {
-    const updated = resumeData.sections.map(section =>
-      section.type === "education" ? { ...section, items: values } : section
+    const updated = resumeData.sections.map((section) =>
+      section.type === "education" ? { ...section, items: values } : section,
     );
     setResumeData({ ...resumeData, sections: updated });
   };
 
   const handleSkillsChange = (values: any) => {
-    const updated = resumeData.sections.map(section =>
-      section.type === "skills" ? { ...section, items: values } : section
+    const updated = resumeData.sections.map((section) =>
+      section.type === "skills" ? { ...section, items: values } : section,
     );
     setResumeData({ ...resumeData, sections: updated });
   };
@@ -144,7 +153,9 @@ export default function EditorCanvas() {
           <PersonalInfoForm
             form={form}
             initialValues={personalItem}
-            onValuesChange={(_, allValues) => handlePersonalInfoChange(allValues)}
+            onValuesChange={(_, allValues) =>
+              handlePersonalInfoChange(allValues)
+            }
           />
         );
       case 1:
@@ -160,7 +171,7 @@ export default function EditorCanvas() {
         return (
           <ExperienceForm
             form={form}
-            initialValues={experienceSection?.items as any || []}
+            initialValues={(experienceSection?.items as any) || []}
             onValuesChange={handleExperienceChange}
           />
         );
@@ -168,7 +179,7 @@ export default function EditorCanvas() {
         return (
           <EducationForm
             form={form}
-            initialValues={educationSection?.items as any || []}
+            initialValues={(educationSection?.items as any) || []}
             onValuesChange={handleEducationChange}
           />
         );
@@ -176,7 +187,7 @@ export default function EditorCanvas() {
         return (
           <SkillsForm
             form={form}
-            initialValues={skillsSection?.items as any || []}
+            initialValues={(skillsSection?.items as any) || []}
             onValuesChange={handleSkillsChange}
             jobTitle={personalItem?.jobTitle}
           />
@@ -189,17 +200,28 @@ export default function EditorCanvas() {
   const completedSteps = [
     !!(personalItem?.fullName && personalItem?.email && personalItem?.phone),
     !!(summaryItem?.content && summaryItem.content.length >= 50),
-    !!(experienceSection?.items && experienceSection.items.length > 0 && 
-       !experienceSection.items.some((exp: any) => !exp.company || !exp.position || !exp.startDate)),
-    !!(educationSection?.items && educationSection.items.length > 0 &&
-       !educationSection.items.some((edu: any) => !edu.institution || !edu.studyType || !edu.area || !edu.startDate)),
+    !!(
+      experienceSection?.items &&
+      experienceSection.items.length > 0 &&
+      !experienceSection.items.some(
+        (exp: any) => !exp.company || !exp.position || !exp.startDate,
+      )
+    ),
+    !!(
+      educationSection?.items &&
+      educationSection.items.length > 0 &&
+      !educationSection.items.some(
+        (edu: any) =>
+          !edu.institution || !edu.studyType || !edu.area || !edu.startDate,
+      )
+    ),
     !!(skillsSection?.items && skillsSection.items.length > 0),
   ];
 
   const isCurrentStepValid = completedSteps[currentStep];
 
   const completionPercentage = Math.round(
-    (completedSteps.filter(Boolean).length / completedSteps.length) * 100
+    (completedSteps.filter(Boolean).length / completedSteps.length) * 100,
   );
 
   return (
@@ -208,8 +230,12 @@ export default function EditorCanvas() {
       <div className="bg-white border-b shadow-sm px-8 py-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-gray-700">Resume Completion</h3>
-            <span className="text-sm font-bold text-violet-600">{completionPercentage}%</span>
+            <h3 className="text-sm font-semibold text-gray-700">
+              Resume Completion
+            </h3>
+            <span className="text-sm font-bold text-violet-600">
+              {completionPercentage}%
+            </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
             <div
@@ -217,8 +243,8 @@ export default function EditorCanvas() {
               style={{ width: `${completionPercentage}%` }}
             />
           </div>
-          <Steps 
-            current={currentStep} 
+          <Steps
+            current={currentStep}
             size="small"
             items={steps.map((step, index) => ({
               title: step.title,
@@ -226,15 +252,15 @@ export default function EditorCanvas() {
               status: completedSteps[index]
                 ? "finish"
                 : currentStep === index
-                ? "process"
-                : "wait"
+                  ? "process"
+                  : "wait",
             }))}
           />
         </div>
       </div>
 
       {/* Form Content */}
-      <div className="flex-1 overflow-y-auto px-8 py-6">
+      <div className="flex-1 overflow-y-auto px-8 py-6 pb-24">
         <div className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -253,7 +279,7 @@ export default function EditorCanvas() {
       </div>
 
       {/* Navigation Footer */}
-      <div className="bg-white border-t shadow-lg px-8 py-4">
+      <div className="bg-white border-t shadow-lg px-8 py-4 fixed bottom-0 left-0 right-0 z-20">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Button
             size="large"
@@ -274,7 +300,6 @@ export default function EditorCanvas() {
               size="large"
               icon={<RightOutlined />}
               onClick={handleNext}
-              disabled={!isCurrentStepValid}
               className="bg-gradient-to-r from-violet-600 to-indigo-600 border-none"
             >
               Next
@@ -285,7 +310,6 @@ export default function EditorCanvas() {
               size="large"
               icon={<CheckOutlined />}
               onClick={() => message.success("Resume completed!")}
-              disabled={!isCurrentStepValid}
               className="bg-gradient-to-r from-green-600 to-emerald-600 border-none"
             >
               Complete

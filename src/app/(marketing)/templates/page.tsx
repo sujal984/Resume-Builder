@@ -78,18 +78,13 @@ export default function TemplatesPage() {
                             )}
 
                             {/* Preview Area */}
-                            <div className={`h-64 bg-gradient-to-br ${template.color} flex items-center justify-center relative overflow-hidden`}>
-                                <div className="w-32 h-44 bg-white rounded-lg shadow-2xl transform group-hover:scale-105 transition-transform duration-300 p-3">
-                                    <div className="w-full h-2 bg-gray-200 rounded mb-2" />
-                                    <div className="w-3/4 h-1.5 bg-gray-100 rounded mb-3" />
-                                    <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                                    <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                                    <div className="w-2/3 h-1 bg-gray-100 rounded mb-3" />
-                                    <div className="w-1/2 h-1.5 bg-gray-200 rounded mb-2" />
-                                    <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                                    <div className="w-full h-1 bg-gray-100 rounded mb-1" />
-                                    <div className="w-3/4 h-1 bg-gray-100 rounded" />
-                                </div>
+                            <div className="h-64 bg-muted flex items-center justify-center relative overflow-hidden">
+                                <img
+                                    src={TEMPLATE_REGISTRY[template.id]?.thumbnail || "/templates/modern-thumb.png"}
+                                    alt={`${template.name} preview`}
+                                    className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                />
                             </div>
 
                             {/* Info */}

@@ -15,7 +15,7 @@ export default function SkillsBlock() {
     const handleAdd = () => {
         addItem(section.id, {
             name: "New Skill",
-            level: "Intermediate", // or number 1-100
+            level: 3,
         });
     };
 
